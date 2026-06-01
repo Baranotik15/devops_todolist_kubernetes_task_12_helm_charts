@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Taint nodes labeled with app=mysql
+kubectl taint nodes $(kubectl get nodes -l app=mysql -o name) app=mysql:NoSchedule
+
 # Install Ingress Controller
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
